@@ -13,7 +13,14 @@ export async function getPosts() {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      // Різні обробки для різних статусів
+      if (response.status === 404) {
+        throw new Error('Posts list not found');
+      } else if (response.status >= 500) {
+        throw new Error('API server error');
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
     }
 
     return await response.json();
@@ -35,7 +42,17 @@ export async function getPost(id) {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      // Спеціальна обробка для 404 - пост не існує
+      if (response.status === 404) {
+        const notFoundError = new Error(`Post with ID ${id} not found`);
+        notFoundError.name = 'NotFoundError';
+        notFoundError.status = 404;
+        throw notFoundError;
+      } else if (response.status >= 500) {
+        throw new Error('API server error');
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
     }
 
     return await response.json();
