@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "home": {
+    "title": "Blog",
+    "description": "All posts from JSONPlaceholder API"
+  },
+  "posts": {
+    "readMore": "Read more",
+    "backToList": "← Back to list",
+    "postNumber": "Post #"
+  },
+  "about": {
+    "title": "About Us",
+    "team": {
+      "title": "Our Team",
+      "description": "We are a young and ambitious team of developers who create innovative web solutions using modern technologies. Our mission is to make the internet more accessible and convenient for users."
+    },
+    "approach": {
+      "title": "Our Approach",
+      "description": "We believe in the power of simple but effective solutions. We develop each project with attention to detail, using best practices and modern technologies such as Next.js, React, and CSS Modules."
+    },
+    "technologies": {
+      "title": "Technologies",
+      "description": "Our technology stack includes Next.js with App Router, React, CSS Modules for styling, and integration with various APIs. We constantly learn new technologies and improve our skills."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "If you have questions or suggestions, don't hesitate to contact us. We are always open to new ideas and collaboration."
+    }
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "Sorry, but the page you are looking for does not exist or has been moved.",
+      "backHome": "Back to home",
+      "about": "About",
+      "suggestions": "Maybe you were looking for:",
+      "homePage": "Home page",
+      "aboutPage": "About page",
+      "examplePost": "Example post"
+    },
+    "general": {
+      "title": "Something went wrong",
+      "apiError": "API server is temporarily unavailable. Please try again later.",
+      "networkError": "Network connection problem. Please check your internet connection.",
+      "serverError": "Internal server error. Please try again later.",
+      "defaultError": "Sorry, an unexpected error occurred. Try refreshing the page or returning to the home page.",
+      "tryAgain": "Try again",
+      "backHome": "Back to home",
+      "errorDetails": "Error details (for developers)"
+    }
+  },
+  "language": {
+    "switch": "Switch language",
+    "ua": "Українська",
+    "en": "English"
+  }
+} 
