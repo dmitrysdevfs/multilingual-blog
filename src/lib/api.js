@@ -18,7 +18,7 @@ export async function getPosts() {
 
     return await response.json();
   } catch (error) {
-    console.error('Помилка при отриманні постів:', error);
+    console.error('Error fetching posts:', error);
     throw error;
   }
 }
@@ -40,7 +40,7 @@ export async function getPost(id) {
 
     return await response.json();
   } catch (error) {
-    console.error(`Помилка при отриманні поста ${id}:`, error);
+    console.error(`Error fetching post ${id}:`, error);
     throw error;
   }
 }
