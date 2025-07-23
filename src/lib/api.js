@@ -22,3 +22,25 @@ export async function getPosts() {
     throw error;
   }
 }
+
+/**
+ * Отримує один пост за ID
+ * @param {number} id - ID поста
+ * @returns {Promise<Object>} Об'єкт поста
+ */
+export async function getPost(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/posts/${id}`, {
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(`Помилка при отриманні поста ${id}:`, error);
+    throw error;
+  }
+}
