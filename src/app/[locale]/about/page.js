@@ -1,5 +1,5 @@
 import { getDictionary } from '@/lib/getDictionary';
-import styles from '../../about/page.module.css';
+import styles from './page.module.css';
 
 export default async function AboutPage({ params }) {
   const { locale } = await params;

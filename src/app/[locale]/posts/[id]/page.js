@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPosts, getPost } from '@/lib/api';
 import { getDictionary } from '@/lib/getDictionary';
-import styles from '../../../posts/[id]/page.module.css';
+import styles from './page.module.css';
 
 // Генеруємо статичні параметри для всіх постів під час білду (SSG)
 export async function generateStaticParams() {

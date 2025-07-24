@@ -22,9 +22,9 @@ export function middleware(request) {
       return NextResponse.next();
     }
 
-    // Перенаправлення буде включено після перенесення сторінок
-    // const newUrl = new URL(`/uk${pathname}`, request.url);
-    // return NextResponse.redirect(newUrl);
+    // Перенаправляємо на українську локаль
+    const newUrl = new URL(`/uk${pathname}`, request.url);
+    return NextResponse.redirect(newUrl);
   }
 
   return NextResponse.next();

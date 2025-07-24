@@ -1,10 +1,35 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { getLocaleFromPathname } from '@/lib/locale';
 import styles from './error.module.css';
 
 export default function Error({ error, reset }) {
+  const pathname = usePathname();
+  const [dict, setDict] = useState(null);
+
+  useEffect(() => {
+    // Визначаємо локаль з URL
+    const locale = getLocaleFromPathname(pathname);
+
+    // Завантажуємо словник для поточної локалі
+    const loadDictionary = async () => {
+      try {
+        const dictionary = await import(`@/dictionaries/${locale}.json`);
+        setDict(dictionary.default);
+      } catch (err) {
+        console.error('Failed to load dictionary:', err);
+        // Fallback до української
+        const fallbackDict = await import('@/dictionaries/uk.json');
+        setDict(fallbackDict.default);
+      }
+    };
+
+    loadDictionary();
+  }, [pathname]);
+
   useEffect(() => {
     // Логуємо помилку для відладки
     console.error('Error boundary caught an error:', error);
@@ -12,20 +37,38 @@ export default function Error({ error, reset }) {
 
   // Визначаємо тип помилки для більш специфічного повідомлення
   const getErrorMessage = () => {
+    if (!dict) return 'Loading...';
+
     if (error.message.includes('API server error')) {
-      return 'Сервер API тимчасово недоступний. Спробуйте пізніше.';
+      return dict.errors.general.apiError;
     }
     if (
       error.message.includes('NetworkError') ||
       error.message.includes('fetch')
     ) {
-      return "Проблема з мережевим з'єднанням. Перевірте інтернет-з'єднання.";
+      return dict.errors.general.networkError;
     }
     if (error.message.includes('HTTP error! status: 500')) {
-      return 'Внутрішня помилка сервера. Спробуйте пізніше.';
+      return dict.errors.general.serverError;
     }
-    return 'Вибачте, сталася неочікувана помилка. Спробуйте оновити сторінку або повернутися на головну.';
+    return dict.errors.general.defaultError;
   };
+
+  // Показуємо loading поки словник завантажується
+  if (!dict) {
+    return (
+      <div className={styles.container}>
+        <main className={styles.main}>
+          <div className={styles.content}>
+            <div className={styles.errorIcon}>⏳</div>
+            <h1 className={styles.title}>Loading...</h1>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  const locale = getLocaleFromPathname(pathname);
 
   return (
     <div className={styles.container}>
@@ -33,28 +76,28 @@ export default function Error({ error, reset }) {
         <div className={styles.content}>
           <div className={styles.errorIcon}>⚠️</div>
 
-          <h1 className={styles.title}>Щось пішло не так</h1>
+          <h1 className={styles.title}>{dict.errors.general.title}</h1>
 
           <p className={styles.description}>{getErrorMessage()}</p>
 
           <div className={styles.errorDetails}>
             <details className={styles.details}>
               <summary className={styles.summary}>
-                Деталі помилки (для розробників)
+                {dict.errors.general.errorDetails}
               </summary>
               <pre className={styles.errorMessage}>
-                {error.message || 'Невідома помилка'}
+                {error.message || 'Unknown error'}
               </pre>
             </details>
           </div>
 
           <div className={styles.actions}>
             <button onClick={reset} className={styles.primaryButton}>
-              Спробувати знову
+              {dict.errors.general.tryAgain}
             </button>
 
-            <Link href="/" className={styles.secondaryButton}>
-              Повернутися на головну
+            <Link href={`/${locale}`} className={styles.secondaryButton}>
+              {dict.errors.general.backHome}
             </Link>
           </div>
         </div>

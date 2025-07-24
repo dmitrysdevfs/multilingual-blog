@@ -41,3 +41,12 @@ export function createLocalizedUrl(pathname, locale) {
 export function getAlternateLocale(currentLocale) {
   return currentLocale === 'uk' ? 'en' : 'uk';
 }
+
+/**
+ * Отримує локаль з параметрів Next.js
+ */
+export async function getLocaleFromParams(params) {
+  const awaitedParams = await params;
+  const locale = awaitedParams?.locale;
+  return isValidLocale(locale) ? locale : defaultLocale;
+}

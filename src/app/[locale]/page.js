@@ -1,7 +1,7 @@
 import { getPosts } from '@/lib/api';
 import { getDictionary } from '@/lib/getDictionary';
 import PostList from '@/components/PostList/PostList';
-import styles from '../page.module.css';
+import styles from './page.module.css';
 
 export default async function Home({ params }) {
   const { locale } = await params;
