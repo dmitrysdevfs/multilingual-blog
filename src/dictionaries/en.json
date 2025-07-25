@@ -57,5 +57,9 @@
     "switch": "Switch language",
     "ua": "Українська",
     "en": "English"
+  },
+  "footer": {
+    "copyright": "© {year} Multilingual Blog. All rights reserved.",
+    "author": "Built with Next.js and ❤️"
   }
 } 
