@@ -61,5 +61,9 @@
   "footer": {
     "copyright": "© {year} Multilingual Blog. All rights reserved.",
     "author": "Built with Next.js and ❤️"
+  },
+  "loading": {
+    "message": "Loading",
+    "subtitle": "Please wait while we prepare content for you..."
   }
 } 
