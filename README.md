@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Multilingual Blog
 
-## Getting Started
+Сучасний багатомовний блог, створений з використанням Next.js 15 та React 19. Підтримує українську та англійську мови з автоматичним перемиканням.
 
-First, run the development server:
+## ✨ Особливості
+
+- 🌐 **Багатомовність** - підтримка української та англійської мов
+- ⚡ **Швидкість** - Next.js App Router з SSG/SSR
+- 🎨 **Сучасний дизайн** - CSS Modules та анімації
+- 📱 **Адаптивність** - працює на всіх пристроях
+- 🔄 **Локалізовані спінери** - індикатори завантаження з перекладами
+- 📊 **API інтеграція** - JSONPlaceholder для тестових даних
+
+## 🚀 Швидкий старт
 
 ```bash
+# Встановлення залежностей
+npm install
+
+# Запуск в режимі розробки
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Збірка для продакшену
+npm run build
+
+# Запуск продакшен версії
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Відкрийте [http://localhost:3000](http://localhost:3000) у браузері.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📁 Структура проєкту
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/[locale]/          # Локалізовані сторінки
+│   ├── loading.js         # Спінер для головної сторінки
+│   ├── about/             # Сторінка "Про нас"
+│   └── posts/[id]/        # Окремі пости
+├── components/            # React компоненти
+│   ├── Header/           # Навігація з перемикачем мов
+│   ├── Footer/           # Підвал сайту
+│   ├── PostList/         # Список постів
+│   └── LoadingSpinner/   # Локалізований спінер
+├── dictionaries/         # JSON словники перекладів
+└── lib/                  # Утиліти та API
+```
 
-## Learn More
+## 🌍 Локалізація
 
-To learn more about Next.js, take a look at the following resources:
+- **Українська** - `/uk/`
+- **Англійська** - `/en/`
+- Автоматичне перенаправлення на українську мову
+- Перемикач мов у хедері
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Технології
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js 15** - React фреймворк
+- **React 19** - UI бібліотека
+- **CSS Modules** - стилізація
+- **JSONPlaceholder** - тестові дані
 
-## Deploy on Vercel
+## 📝 Ліцензія
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT License
